@@ -1,0 +1,260 @@
+/* ================================== */
+/* ESTILOS GERAIS E LAYOUT DA APLICAÇÃO */
+/* ================================== */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  background-color: #f4f7f6;
+}
+.App-header { background-color: #282c34; padding: 20px; color: white; text-align: center; margin-bottom: 2rem; }
+.main-nav { display: flex; justify-content: center; gap: 15px; margin-top: 15px; }
+.container { max-width: 900px; margin: 0 auto; padding: 0 2rem 2rem 2rem; }
+
+/* ================================== */
+/* COMPONENTES GERAIS */
+/* ================================== */
+button { padding: 0.75rem; border: none; color: white; font-size: 1rem; font-weight: bold; border-radius: 4px; cursor: pointer; transition: background-color 0.2s; }
+button:hover { filter: brightness(90%); }
+.main-nav button { background-color: #6c757d; width: auto; }
+.btn-edit { background-color: #ffc107; }
+.btn-delete { background-color: #dc3545; margin-left: 5px; }
+.btn-cancel { background-color: #6c757d; }
+.btn-view { background-color: #17a2b8; }
+.btn-save-orcamento { background-color: #007bff; }
+.btn-add-item { border: none; padding: 0.75rem 1rem; background-color: #28a745; color: white; border-radius: 4px; cursor: pointer;}
+.btn-remove-item { background: none; border: none; color: #dc3545; cursor: pointer; font-weight: bold; }
+.status { padding: 5px 10px; border-radius: 15px; color: white; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
+.status-rascunho { background-color: #6c757d; }
+.status-aprovado { background-color: #28a745; }
+.status-cancelado { background-color: #dc3545; }
+.status-vencido { background-color: #ffc107; color: #333; }
+.form-container, .list-container { margin-top: 2rem; padding: 2rem; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+.form-section { margin-bottom: 2rem; border-bottom: 1px solid #eee; padding-bottom: 2rem; }
+.form-section:last-of-type { border-bottom: none; }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
+.form-group input, .form-group select, .form-group textarea, .input-mascarado { width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 1rem; }
+.form-group textarea { min-height: 80px; resize: vertical; }
+.form-buttons { display: flex; gap: 10px; }
+.form-row { display: flex; gap: 1rem; }
+.search-container { margin-bottom: 1.5rem; }
+.add-item-form { display: flex; gap: 10px; align-items: flex-start; }
+.added-items-list { list-style: none; padding: 0; margin-top: 1rem; }
+.added-items-list li { display: flex; justify-content: space-between; align-items: center; padding: 8px; background-color: #f9f9f9; border: 1px solid #eee; border-radius: 4px; margin-bottom: 5px; }
+.clients-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+.clients-table th, .clients-table td { border-bottom: 1px solid #ddd; padding: 12px 15px; text-align: left; }
+.clients-table th { background-color: #f4f7f6; font-weight: bold; }
+.actions-group { display: flex; align-items: center; gap: 5px; }
+.status-select { margin: 0; padding: 6px; border: 1px solid #ccc; border-radius: 4px; background-color: #fff; }
+.searchable-dropdown { position: relative; width: 100%; }
+.dropdown-toggle { width: 100%; text-align: left; background-color: white; color: #333; border: 1px solid #ccc; font-weight: normal; }
+.dropdown-panel { position: absolute; top: 100%; left: 0; right: 0; background: white; border: 1px solid #ccc; border-top: none; border-radius: 0 0 4px 4px; max-height: 200px; overflow-y: auto; z-index: 1000; }
+.dropdown-search { width: 100%; padding: 0.5rem; border: none; border-bottom: 1px solid #eee; box-sizing: border-box; }
+.dropdown-list { list-style: none; margin: 0; padding: 0; }
+.dropdown-list li { padding: 0.75rem; cursor: pointer; }
+.dropdown-list li:hover { background-color: #f2f2f2; }
+.item-staging-area { border: 1px solid #007bff; border-radius: 8px; padding: 1rem; margin-top: 1.5rem; background-color: #f0f8ff; }
+
+/* ================================== */
+/* PÁGINA DE DETALHES (A4) E IMPRESSÃO */
+/* ================================== */
+
+/* --- Estilos para visualização em TELA --- */
+.proposta-container {
+  background: white;
+  width: 21cm;
+  margin: 2rem auto;
+  padding: 2cm;
+  box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+  box-sizing: border-box;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 11pt;
+}
+.orcamento-header { display: flex; justify-content: space-between; border-bottom: 2px solid #000; padding-bottom: 1rem; }
+.empresa-info h1 { margin: 0; font-size: 11pt; font-weight: bold; }
+.empresa-info p { margin: 4px 0; font-size: 9pt; }
+.orcamento-details { text-align: right; }
+.orcamento-details h2 { margin: 0; font-size: 10pt; font-weight: bold; }
+.orcamento-details p { margin: 4px 0; font-size: 9pt; }
+.cliente-info, .itens-info, .observacoes-info, .clausulas-finais { margin-top: 1.5rem; }
+.cliente-info h3, .itens-info h3, .observacoes-info h3, .clausulas-finais h3 { font-size: 11pt; border-bottom: 1px solid #ccc; padding-bottom: 0.5rem; margin-bottom: 1rem; font-weight: bold; }
+.cliente-info p { 
+  font-size: 9pt; 
+  white-space: pre-wrap; 
+  word-wrap: break-word;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+.itens-table { width: 100%; border-collapse: collapse; font-size: 9pt; }
+.itens-table th, .itens-table td { border: 1px solid #ccc; padding: 6px; text-align: left; }
+.itens-table th { background-color: #f2f2f2; font-weight: bold; }
+.itens-table .col-item { width: 5%; }
+.itens-table .col-desc { width: 40%; }
+.itens-table .col-ncm { width: 15%; }
+.itens-table .col-qtde { width: 5%; text-align: center; }
+.itens-table .col-valor, .itens-table .col-subtotal { width: 17.5%; text-align: right; }
+.itens-table tfoot .total-label { text-align: right; font-weight: bold; font-size: 11pt; border: none; padding-top: 10px; }
+.itens-table tfoot .total-valor { font-weight: bold; font-size: 11pt; text-align: right; border: none; padding-top: 10px; }
+.clausula-final-item h4 { font-size: 11pt; font-weight: bold; margin-bottom: 0.5rem; }
+.payment-details-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 20px; margin-top: 2rem; border-top: 1px solid #ccc; padding-top: 1rem; align-items: center; }
+.payment-info-box h4, .qr-code-box h4, .total-value-box h4 { font-size: 10pt; font-weight: bold; margin-bottom: 10px; }
+.payment-info-box p { font-size: 9pt; margin: 2px 0; }
+
+/* --- MUDANÇA APLICADA AQUI --- */
+.qr-code-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.qr-code-box p {
+  margin-bottom: 10px;
+}
+.qr-code-box img {
+  width: 120px;
+  height: 120px;
+}
+
+.total-value-box { text-align: right; }
+.total-value-box p { font-size: 14pt; font-weight: bold; }
+.orcamento-footer { display: none; } /* O rodapé só aparece na impressão */
+
+/* --- SEÇÃO DE IMPRESSÃO CORRIGIDA E FINAL --- */
+@media print {
+  body {
+    margin: 0;
+    background-color: white;
+    counter-reset: page; /* Inicia o contador de páginas */
+  }
+  .no-print, .App-header {
+    display: none !important;
+  }
+  .container {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+    margin: 0;
+  }
+  .proposta-container {
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 0;
+  }
+
+  .cliente-info p {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+  
+  @page {
+    size: A4;
+    margin: 2cm; /* Define a margem do papel */
+  }
+
+  /* Força a quebra de página antes da segunda página de conteúdo */
+  .subsequent-page {
+    page-break-before: always;
+  }
+
+  /* Esconde o cabeçalho em todas as páginas, EXCETO na primeira */
+  .subsequent-page .orcamento-header {
+    display: none;
+  }
+
+  /* Faz o rodapé aparecer em todas as páginas */
+  .orcamento-footer {
+    display: block;
+    position: fixed;
+    bottom: 1cm;
+    left: 2cm;
+    right: 2cm;
+    text-align: center;
+    font-size: 9pt;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  /* Evita quebras de página ruins */
+  tr, .clausula-final-item, .content-section {
+    page-break-inside: avoid;
+  }
+}
+/* ================================== */
+/* ESTILOS DO MODAL DE PRÉ-VISUALIZAÇÃO */
+/* ================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  line-height: 1;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.modal-body {
+  overflow-y: auto; /* Adiciona scroll se o conteúdo for grande */
+  flex-grow: 1;
+}
+
+.previa-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+.previa-table th, .previa-table td {
+  border-bottom: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+.previa-table th {
+  background-color: #f4f7f6;
+}
+
+.modal-footer {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
